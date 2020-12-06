@@ -4,10 +4,10 @@ plot[\[Alpha]_, xd_, xw_, xF_, q_, r_] :=
     b2, xf = ((r + 1)*xF + (q - 1)*xd)/(r + q), 
    yf = (r*xF + q*xd)/(r + q), t}, k2 = (r1 + 1)/r1; b2 = -xw/r1; 
   With[{data = 
-     Drop[NestWhileList[({#, 
-            If[# > xf, k1*# + b1, 
-             k2*# + b2]} &@(#[[2]]/(\[Alpha] - (\[Alpha] - 
-               1)*#[[2]]))) &, {xd, xd}, #[[1]] >= xw &], -1]}, 
+     NestWhileList[({#, 
+           If[# > xf, k1*# + b1, 
+            k2*# + b2]} &@(#[[2]]/(\[Alpha] - (\[Alpha] - 
+                1)*#[[2]]))) &, {xd, xd}, #[[1]] >= xw &]}, 
    Show[Plot[{x, (x \[Alpha])/(1 - x + x \[Alpha]), k1*x + b1, 
       k2*x + b2}, {x, 0, 1}, PlotRange -> {0, 1}, 
      PlotTheme -> "Scientific", PlotStyle -> Black, 
